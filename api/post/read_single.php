@@ -27,4 +27,7 @@
         'author' => $post->author,
         'category_id' => $post->category_id,
         'category_name' => $post->category_name 
-    )
+    );
+
+    // Make JSON
+    print_r(json_encode($post_arr));
