@@ -158,7 +158,31 @@
             // Print error if something goes wrond
             printf("Error: %s.\n", $stmt->error);
             return false;
-
         }
+
+        // Delete Single Post
+        public function delete() {
+            // Create query
+            $query = 'DELETE FROM ' . 
+                $this->table . '
+                WHERE
+                    id = ?';
+
+            // Prepare statement
+            $stmt = $this->conn->prepare($query);
+
+            // Bind ID
+            $stmt->bindParam(1, $this->id);
+
+            // Execute query
+            if($stmt->execute()) {
+                return true;
+            }
+
+            // Print error if something goes wrond
+            printf("Error: %s.\n", $stmt->error);
+            return false;
+        }
+
     }
 
