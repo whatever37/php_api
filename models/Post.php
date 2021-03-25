@@ -166,13 +166,16 @@
             $query = 'DELETE FROM ' . 
                 $this->table . '
                 WHERE
-                    id = ?';
+                    id = :id';
 
             // Prepare statement
             $stmt = $this->conn->prepare($query);
 
+            // Clean data
+            $this->id = htmlspecialchars(strip_tags($this->id));
+
             // Bind ID
-            $stmt->bindParam(1, $this->id);
+            $stmt->bindParam(':id', $this->id);
 
             // Execute query
             if($stmt->execute()) {
